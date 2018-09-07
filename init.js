@@ -52,6 +52,7 @@ const main = async function(){
 
 	var nonce = await web3.eth.getTransactionCount(addressFrom)
 	var gasPrice = await web3.eth.getGasPrice()
+		gasPrice = +((new Big(gasPrice)).times(gas))
 	// const batch = new web3.BatchRequest()
 	// for (let t in recipientsArr) {
 	//   let coin = recipientsArr[t]
@@ -66,7 +67,7 @@ const main = async function(){
 	// batch.execute()
 	for (let t in recipientsArr) {
 		let coin = recipientsArr[t]
-		gasPrice = +((new Big(gasPrice)).times(gas))
+
 		nonce++
 
 		let contract = new web3.eth.Contract(abi, contractAddress, {from: addressFrom})
