@@ -83,7 +83,7 @@ const sendTransaction = function (address, amount, privateKey, gas, gasPrice, in
         .then((signedTransaction) => {
           web3.eth.sendSignedTransaction(signedTransaction.rawTransaction)
  		.once('transactionHash', function(hash){
- 			console.log(['transferToReceiver '+coin.addr+' Trx Hash:' + hash]);
+ 			console.log(['transferToReceiver Trx Hash:' + hash]);
  			resolve(1)
  		})
         .once('receipt', function(receipt){console.log(['transferToReceiver Receipt:', receipt]);})
