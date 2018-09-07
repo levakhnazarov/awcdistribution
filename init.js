@@ -87,7 +87,7 @@ const main = async function () {
 const sendTransaction = function (address, amount, privateKey, gas, gasPrice, input, isTokenTransaction, nonce, addressFrom) {
   return new Promise((resolve, reject) => {
     const transaction = { nonce, data: input, gasPrice, to: address, value: amount, gas, chainId: ETH_CHAIN_ID }
-
+console.log(transaction)
     web3.eth.accounts.signTransaction(transaction, privateKey)
       .then((signedTransaction) => {
         web3.eth.sendSignedTransaction(signedTransaction.rawTransaction)
