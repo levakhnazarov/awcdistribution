@@ -4,15 +4,26 @@
   "description": "atomic wallet token distribution app",
   "main": "init.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node init.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint --ext js .",
+    "lint:fix": "./node_modules/.bin/eslint --ext js --fix ."
   },
   "author": "LAkhn",
   "license": "MIT",
   "dependencies": {
     "big.js": "^5.1.2",
+    "eslint-plugin-unicorn": "^6.0.1",
     "ethereumjs-testrpc": "^6.0.3",
     "fast-csv": "^2.4.1",
+    "install": "^0.12.1",
     "nodejs-argv": "^1.0.2",
+    "npm": "^6.4.1",
     "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {
+    "@atomix/eslint-config": "^6.4.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^4.19.1"
   }
 }
