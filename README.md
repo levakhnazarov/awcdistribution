@@ -1,4 +1,4 @@
-# AWS distribution
+# AWC distribution
 #### the most simple contract crawler 
 ### Usage:
   ```npm install```
