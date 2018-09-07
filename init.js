@@ -9,6 +9,7 @@ const NETWORK_GAS = 250000
 argv.option([
     ["-c", "--contract", "0x41e5560054824eA6B0732E656E3Ad64E20e94E45", "contract address"],
     ["-p", "--pk", "", "private key"],
+    ["-g", "--gas", "", "gas coefficent"],
     ["-f", "--from", "0xd32a257656f197626d3dfa5069237ebf81e739e7", "sender address"]
 ])
 
@@ -27,6 +28,7 @@ const ETH_CHAIN_ID = 1
 const contractAddress = argv.get("-c")
 const privateKey = argv.get("-p")
 const addressFrom = argv.get("-f")
+const gas = argv.get("-g")
 const provider = new Web3.providers.HttpProvider(ETH_NODE_URL)
 
 var web3 = new Web3(provider)
@@ -64,7 +66,7 @@ const main = async function(){
 	// batch.execute()
 	for (let t in recipientsArr) {
 		let coin = recipientsArr[t]
-		gasPrice = +((new Big(gasPrice)).times(1.8))
+		gasPrice = +((new Big(gasPrice)).times(gas))
 		nonce++
 
 		let contract = new web3.eth.Contract(abi, contractAddress, {from: addressFrom})
