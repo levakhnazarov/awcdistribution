@@ -95,12 +95,18 @@ const main = async function () {
 csv
   .fromPath('file.csv')
   .on('data', (data) => {
+    const rawAmount = parseFloat(data[1])
+    console.log(rawAmount, typeof rawAmount)
 
-    let amount = +((new Big(parseInt(data[1]))).times((new Big(10)).pow(8)))
+    if (typeof rawAmount !== 'number') {
+      throw new Error("amount from csv is not a number!")
+    }
+
+    const amount = +((new Big(rawAmount)).times((new Big(10)).pow(8)))
 
 
     console.log(amount, typeof amount, data[0])
-    recipientsArr.push({ addr: data[0], amount: amount})
+    recipientsArr.push({ addr: data[0], amount: amount })
   })
   .on('end', () => {
     main()
