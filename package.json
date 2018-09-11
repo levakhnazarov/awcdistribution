@@ -12,7 +12,9 @@
   "author": "LAkhn",
   "license": "MIT",
   "dependencies": {
+    "async-request": "^1.2.0",
     "big.js": "^5.1.2",
+    "eosjs": "^16.0.6",
     "eslint-plugin-unicorn": "^6.0.1",
     "ethereumjs-testrpc": "^6.0.3",
     "fast-csv": "^2.4.1",
