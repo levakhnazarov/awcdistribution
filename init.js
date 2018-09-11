@@ -95,8 +95,12 @@ const main = async function () {
 csv
   .fromPath('file.csv')
   .on('data', (data) => {
-    console.log(`${(new Big(`${data[1]}`)).times((new Big(10)).pow(8))}`, data[0])
-    recipientsArr.push({ addr: data[0], amount: `${(new Big(`${data[1]}`)).times((new Big(10)).pow(8))}` })
+
+    let amount = +((new Big(parseInt(data[1]))).times((new Big(10)).pow(8)))
+
+
+    console.log(amount, typeof amount, data[0])
+    recipientsArr.push({ addr: data[0], amount: amount})
   })
   .on('end', () => {
     main()
