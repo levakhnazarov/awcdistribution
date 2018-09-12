@@ -88,7 +88,7 @@ const main = async function () {
         .then((send) => {
           console.log(send)
         })
-    }, x * 1000, recipientsArr[x])
+    }, x * 30000, recipientsArr[x])
   }
 }
 
@@ -96,7 +96,6 @@ csv
   .fromPath('file.csv')
   .on('data', (data) => {
     const rawAmount = parseFloat(data[1])
-    console.log(rawAmount, typeof rawAmount)
 
     if (typeof rawAmount !== 'number') {
       throw new Error("amount from csv is not a number!")
@@ -105,7 +104,6 @@ csv
     const amount = +((new Big(rawAmount)).times((new Big(10)).pow(8)))
 
 
-    console.log(amount, typeof amount, data[0])
     recipientsArr.push({ addr: data[0], amount: amount })
   })
   .on('end', () => {
