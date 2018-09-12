@@ -12,6 +12,7 @@ const abi = require('./ABI.json')
 argv.option([
   ['-c', '--contract', '0x41e5560054824eA6B0732E656E3Ad64E20e94E45', 'contract address'],
   ['-p', '--pk', '', 'private key'],
+  ['-n', '--nonce', '', 'nonce'],
   ['-g', '--gas', '', 'gas coefficent'],
   ['-f', '--from', '0xd32a257656f197626d3dfa5069237ebf81e739e7', 'sender address'],
 ])
@@ -32,6 +33,7 @@ const contractAddress = argv.get('-c')
 const privateKey = argv.get('-p')
 const addressFrom = argv.get('-f')
 const gas = argv.get('-g')
+const existedNonce = argv.get('-n')
 const provider = new Web3.providers.HttpProvider(ETH_NODE_URL)
 
 const web3 = new Web3(provider)
@@ -74,6 +76,9 @@ const sendTransaction = function (address, amount, privateKey, gas, gasPrice, in
 
 const main = async function () {
   let nonce = await web3.eth.getTransactionCount(addressFrom)
+  if(existedNonce > 0) {
+    nonce = existedNonce
+  }
   let gasPrice = await web3.eth.getGasPrice()
 
   gasPrice = +((new Big(gasPrice)).times(gas))
